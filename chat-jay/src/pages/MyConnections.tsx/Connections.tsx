@@ -1,5 +1,6 @@
 import { getInitialLettersOfName } from "../../Utils/Connections"
 import { FriendsConnections } from "../../interfaces/Connections"
+import "./index.css"
 
 export default function Connections() {
     const friends: FriendsConnections[] = [
@@ -27,12 +28,23 @@ export default function Connections() {
             username: "Nanga",
             profission: "Front-end Developer"
         },
+        {
+            username: "Ângelo Domingos",
+            profission: "Front-end Developer"
+        },
+        {
+            username: "João Beto",
+            profission: "Front-end Developer"
+        },
     ]
 
+
     return (
-        <div className="w-[405px] min-h-full bg-[#2B2D38] text-center rounded-3xl">
-            <div className="title-connection text-white font-bold p-4">Minhas Conexões</div>
-            <ul className="flex flex-col">
+        <div className="friends-connection w-[405px] min-w-[405px] max-w-[27%] max-h-[73%] bg-[#2B2D38] text-center rounded-3xl mt-4 fixed top-[200px]">
+            <div className="title-connection bg-[#2B2D38] w-[405px] text-white font-bold rounded-t-3xl p-4 fixed z-10">
+                Minhas Conexões
+            </div>
+            <ul className="flex flex-col mt-14">
                 {friends.map((friend, index) => (
                     <li key={index} className="flex basis-full cursor-pointer items-center py-3 hover:bg-[#3B3D4A]">
                         <div className="friend-profile px-6">

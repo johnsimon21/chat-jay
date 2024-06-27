@@ -1,7 +1,8 @@
 import profilePicture from "../../assets/profile-before-removebg (1).png"
+
 export default function Navbar() {
     return (
-        <div className="bg-[#181921] w-full h-[230px] flex flex-col px-4">
+        <div className="bg-[#181921] w-full h-[200px] flex flex-col px-4 fixed top-0 z-50">
             <div className="flex w-full h-20">
                 {/* Logo section*/}
                 <div className=" text-2xl text-white font-bold flex-none flex justify-start items-center w-48">Chat-Jay</div>

@@ -6,13 +6,13 @@ import Posts from "./pages/Posts";
 
 export default function App() {
   return (
-    <div className="w-full h-full flex flex-none flex-col">
+    <main className="w-full h-full flex flex-none flex-col relative">
       <Navbar />
 
-      <section className="p-4 flex grow space-x-4">
+      <section className="p-4 flex grow space-x-4 w-full">
         <Connections />
-        {/* <Posts /> */}
+        <Posts />
       </section>
-    </div>
+    </main>
   )
 } 
