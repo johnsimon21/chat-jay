@@ -3,5 +3,6 @@ export interface Post {
     profilePicture: string | null;
     time: string;
     content: string,
-    postPicture: string
+    postPicture: string;
+    userStatus: boolean | string
 }[]

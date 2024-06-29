@@ -1,6 +1,19 @@
-import profilePicture from "../../assets/profile-before-removebg (1).png"
+import profilePicture from "../../assets/profile.jpg"
+import UserStatus from "../../components/UserStatus"
+import { Link } from "react-router-dom";
 
-export default function Navbar() {
+export default function Navbar({ displayNotifications, setDisplayNotifications, notifications }: { displayNotifications: boolean, setDisplayNotifications: React.Dispatch<React.SetStateAction<boolean>>, notifications: boolean }) {
+
+    const chat = 100;
+    const news = 1;
+
+    const handleNotificationsVisibility = () => {
+        if (notifications) {
+            setDisplayNotifications(false);
+        } else {
+            setDisplayNotifications(true);
+        }
+    }
     return (
         <div className="bg-[#181921] w-full h-[200px] flex flex-col px-4 fixed top-0 z-50">
             <div className="flex w-full h-20">
@@ -9,21 +22,36 @@ export default function Navbar() {
 
                 {/* Navigation bar section*/}
                 <div className="flex flex flex-1 text-[#A8A8A8] justify-center">
-                    <div className="navigation-item nav-item-active w-[120px] pt-[20px] pb-0 cursor-pointer text-center">Home</div>
-                    <div className="navigation-item w-[120px] pt-[20px] pb-0 cursor-pointer text-center">Chat</div>
-                    <div className="navigation-item w-[120px] pt-[20px] pb-0 cursor-pointer text-center">Notifications</div>
+                    <Link to="/" className="navigation-item transition ease-in-out nav-item-active w-[120px] h-fit pt-[20px] pb-2 cursor-pointer text-center">
+                        Home
+                    </Link>
+                    <Link to="/chat" className="navigation-item transition ease-in-out w-[120px] h-fit pt-[20px] pb-2 cursor-pointer hover:text-[#9270F2] text-center relative">
+                        <div>Chat</div>
+                        {chat ? <div className="news-chat absolute top-4 right-2 text-[.7rem] text-white text-center bg-[#628BD9] min-w-8 max-w-9 rounded-xl border-[1px] border-t-[#432792] border-e-[#432792] border-b-[#D8A136] border-s-[#D8A136]">
+                            {!(chat > 99) ? chat : "+99"}
+                        </div> : null}
+
+                    </Link>
+                    <div
+                        onClick={() => handleNotificationsVisibility()}
+                        className="navigation-item transition ease-in-out w-[120px] h-fit pt-[20px] pb-2 cursor-pointer hover:text-[#9270F2] text-center relative">
+                        <div>Notificações</div>
+                        {news ? <div className="news-chat absolute top-4 right-[-12px] text-[.7rem] text-white text-center bg-[#628BD9] min-w-8 max-w-9 rounded-xl border-[1px] border-t-[#432792] border-e-[#432792] border-b-[#D8A136] border-s-[#D8A136]">
+                            {!(news > 99) ? news : "+99"}
+                        </div> : null}
+                    </div>
                 </div>
 
                 {/* Profile section */}
-                <div className="text-white flex flex-none w-48 items-center">
-                    <div className="flex flex-col text-right">
+                <div className="text-white flex flex-none w-48 items-center justify-end">
+                    <div className="flex flex-col text-right me-1">
                         <span className="username">John Simon</span>
-                        <span className="profission text-[#B9B9B9]">Full-stack Developer</span>
+                        <span className="profission text-[#B9B9B9] text-sm">Full-stack Developer</span>
                     </div>
 
                     <div className="px-1">
                         <div className="w-10 h-10 bg-gray-400 rounded-full relative">
-                            <div className="w-2 h-2 bg-[#55ED6E] rounded-full absolute right-1"></div>
+                            <UserStatus userStatus={true} />
                             <img src={profilePicture} alt="imagem de perfil" className="w-full h-full rounded-full border border-indigo-500" />
                         </div>
                     </div>

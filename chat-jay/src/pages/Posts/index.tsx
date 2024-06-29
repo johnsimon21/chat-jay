@@ -5,55 +5,62 @@ import messageIcon from "../../assets/message.svg"
 import './indes.css'
 
 import { Post } from "../../interfaces/Post"
+import UserStatus from "../../components/UserStatus"
 
-export default function Posts() {
+export default function Posts({ notificationsOpened }: { notificationsOpened: boolean }) {
     const posts: Post[] = [
         {
             username: "Miguel Del Castilio",
             profilePicture: "../../assets/profile-before-removebg (1).png",
             time: "2 minutos",
             content: "Olá minha rede, hoje estou navegando no <<Chat-Jay>> e até agora estou adorando a experiência, é simples e muito atrativo vamos a isso🥳✊🏻✊🏻Aí está o Devsenvolvedor do <<Chat-Jay>> 👇🏻",
-            postPicture: "../../assets/profile-before-removebg (1).png"
+            postPicture: "../../assets/profile-before-removebg (1).png",
+            userStatus: false
         },
         {
             username: "King Dacis",
             profilePicture: "../../assets/profile-before-removebg (1).png",
             time: "2 minutos",
             content: "Olá minha rede, hoje estou navegando no <<Chat-Jay>> e até agora estou adorando a experiência, é simples e muito atrativo vamos a isso🥳✊🏻✊🏻Aí está o Devsenvolvedor do <<Chat-Jay>> 👇🏻",
-            postPicture: "../../assets/profile-before-removebg (1).png"
+            postPicture: "../../assets/profile-before-removebg (1).png",
+            userStatus: true
         },
         {
             username: "Mauro Twister",
             profilePicture: "../../assets/profile-before-removebg (1).png",
             time: "2 minutos",
             content: "Olá minha rede, hoje estou navegando no <<Chat-Jay>> e até agora estou adorando a experiência, é simples e muito atrativo vamos a isso🥳✊🏻✊🏻Aí está o Devsenvolvedor do <<Chat-Jay>> 👇🏻",
-            postPicture: "../../assets/profile-before-removebg (1).png"
+            postPicture: "../../assets/profile-before-removebg (1).png",
+            userStatus: true
         },
         {
             username: "Miguel Deep",
             profilePicture: "../../assets/profile-before-removebg (1).png",
             time: "2 minutos",
             content: "Olá minha rede, hoje estou navegando no <<Chat-Jay>> e até agora estou adorando a experiência, é simples e muito atrativo vamos a isso🥳✊🏻✊🏻Aí está o Devsenvolvedor do <<Chat-Jay>> 👇🏻",
-            postPicture: "../../assets/profile-before-removebg (1).png"
+            postPicture: "../../assets/profile-before-removebg (1).png",
+            userStatus: ""
         },
         {
             username: "Abílio Bota Félix",
             profilePicture: "../../assets/profile-before-removebg (1).png",
             time: "2 minutos",
             content: "Olá minha rede, hoje estou navegando no <<Chat-Jay>> e até agora estou adorando a experiência, é simples e muito atrativo vamos a isso🥳✊🏻✊🏻Aí está o Devsenvolvedor do <<Chat-Jay>> 👇🏻",
-            postPicture: "../../assets/profile-before-removebg (1).png"
+            postPicture: "../../assets/profile-before-removebg (1).png",
+            userStatus: false
         },
         {
             username: "Nanga",
             profilePicture: "../../assets/profile-before-removebg (1).png",
             time: "2 minutos",
             content: "Olá minha rede, hoje estou navegando no <<Chat-Jay>> e até agora estou adorando a experiência, é simples e muito atrativo vamos a isso🥳✊🏻✊🏻Aí está o Devsenvolvedor do <<Chat-Jay>> 👇🏻",
-            postPicture: "../../assets/profile-before-removebg (1).png"
+            postPicture: "../../assets/profile-before-removebg (1).png",
+            userStatus: true
         },
     ]
 
     return (
-        <ul className="posts-cards flex flex-col w-full mt-[200px]">
+        <ul className={notificationsOpened ? "posts-cards transition-costumized flex flex-col w-full me-350" : "posts-cards flex flex-col w-full"}>
             {posts.map((post, index) => (
                 <div className="w-full bg-[#2B2D38] mb-4 text-center max-h-[580px] rounded-3xl">
                     <li key={index} className="flex flex-col basis-full max-h-[100%] py-3">
@@ -62,7 +69,7 @@ export default function Posts() {
                             <div className="flex flex-1 items-start">
                                 <div className="friend-profile ps-6 pe-4">
                                     <div className="w-10 h-10 bg-[#587CC0] rounded-full relative flex justify-center">
-                                        <div className="w-2 h-2 bg-[#55ED6E] rounded-full absolute right-1"></div>
+                                        <UserStatus userStatus={post.userStatus} />
                                         <span className="initial-name text-white self-center">
                                             {getInitialLettersOfName(post.username)}
                                         </span>

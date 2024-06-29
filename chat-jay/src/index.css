@@ -10,7 +10,11 @@
 
 body {
   background-color: #1F2029;
+}
 
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #9270F2 #2e2e35;
 }
 
 #root {
@@ -27,7 +31,7 @@ body {
 .nav-item-active {
   border-top-color: #a892e3;
   color: #9270F2;
-  transition: all 360ms;
+  /* transition: all 360ms; */
 }
 
 .title-connection {
@@ -61,22 +65,26 @@ body {
 
 }
 
+.me-350 {
+  margin-right: 350px !important;
+}
+
 @media (max-width: 1542px) {
 
   .friends-connection {
     min-width: 340px;
     width: 340px;
-    transition: 360ms;
   }
 
   .title-connection {
     width: 340px;
-    transition: 360ms;
-
   }
 
   .posts-cards {
     margin-left: 360px !important;
-    transition: 360ms;
   }
+}
+
+.transition-costumized {
+  transition: all 360ms;
 }

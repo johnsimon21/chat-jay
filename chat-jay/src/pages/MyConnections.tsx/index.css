@@ -1,5 +1,7 @@
 .friends-connection {
     overflow-y: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: #1c1c20 #27272c;
 }
 /* .friends-connection ul{
     overflow-y: scroll;
