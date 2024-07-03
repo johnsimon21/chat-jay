@@ -2,20 +2,16 @@ import UserStatus from "../../components/UserStatus";
 import profilePicture from "../../assets/profile.jpg"
 import settingsIcon from "../../assets/settings.svg"
 import notificationsIcon from "../../assets/notifications.svg"
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
 import { HomeIcon } from "../../components/svg/Home";
 import { NotificationIcon } from "../../components/svg/Notification";
 import { VideoCallIcon } from "../../components/svg/VideoCall";
 import { VoiceCallIcon } from "../../components/svg/VoiceCall";
 import { SettingsIcon } from "../../components/svg/Settings";
-import { RecordVoiceIcon } from "../../components/svg/RecordVoice";
-import { SendMessageIcon } from "../../components/svg/SendMessage";
 import { UsersIcon } from "../../components/svg/User";
 import { SearchIcon } from "../../components/svg/Search";
 import { FriendsActive, FriendMassage, ChatGroup } from "../../interfaces/global";
 import "./Chat.css"
-import { AttachIcon } from "../../components/svg/Attach";
-import { EmojisIcon } from "../../components/svg/Emojis";
 
 
 
@@ -69,7 +65,7 @@ export default function Chat() {
         {
             id: "aaa2",
             username: "Miguel Del Castilio",
-            message: "222-2 Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
+            message: "Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
             sentTime: "01/07/2024",
             status: true
         },
@@ -90,14 +86,14 @@ export default function Chat() {
         {
             id: "aaa2",
             username: "Miguel Deep",
-            message: "2222 Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
+            message: "Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
             sentTime: "01/07/2024",
             status: true
         },
         {
             id: "aaa2",
             username: "Abílio Bota Félix",
-            message: "2222 Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
+            message: "Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
             sentTime: "01/07/2024",
             status: true
         },
@@ -254,19 +250,11 @@ export default function Chat() {
         return firstName
     }
 
-    const [inputMessageValue, setInputMessageValue] = useState<string>('');
-
-    function handleMessageInput(event: ChangeEvent<HTMLInputElement>) {
-        setInputMessageValue(event.target.value.trim());
-    };
-
 
     const classValue = "w-[17px] fill-[#ACB7F8]"
     const userClassValue = "w-[25px] fill-[#BEBEC0]"
-    const friendMessageClass = "bg-[#3D4051] rounded-b-xl rounded-r-xl text-sm self-start mt-5 w-fit max-w-[60%] px-5 pt-[10px] pb-5"
-    const friendMessageClassBottom = "bg-[#3D4051] rounded-b-xl rounded-r-xl rounded-s-xl text-sm self-start mt-1 w-fit max-w-[60%] px-5 pt-[10px] pb-5"
-    const MyMessageClass = "bg-[#645397] rounded-b-xl rounded-s-xl text-sm self-end mt-5 w-fit max-w-[60%] px-5 pt-[10px] pb-5"
-    const MyMessageClassBottom = "bg-[#645397] rounded-b-xl rounded-s-xl rounded-r-xl text-sm self-end mt-1 w-fit max-w-[60%] px-5 pt-[10px] pb-5"
+    const friendMessageClass = "bg-[#3D4051] rounded-b-xl rounded-r-xl text-sm self-start mb-5 w-fit max-w-[60%] px-5 pt-[10px] pb-5"
+    const MyMessageClass = "bg-[#645397] rounded-b-xl rounded-s-xl text-sm self-end mb-5 w-fit px-5 pt-[10px] pb-5"
 
     return (
         <div className="flex basis-full h-screen">
@@ -323,47 +311,30 @@ export default function Chat() {
                     {friendsMessages.map((friendMessage, messageIndex) => (
                         friendMessage.id === myID ? (
                             <li key={friendMessage.id} className="w-full flex flex-col">
-                                {friendsMessages[messageIndex - 1]?.id === friendMessage.id ? (
-                                    <span className={MyMessageClassBottom}>{friendMessage.message}</span>
-                                ) : (
-                                    <span className={MyMessageClass}>{friendMessage.message}</span>
-                                )}
+                                <span className={MyMessageClass}>{friendMessage.message}</span>
                             </li>
                         ) : (
-                            <li key={friendMessage.id} className="w-full flex flex-col">
-                                {friendsMessages[messageIndex - 1]?.id === friendMessage.id ? (
-                                    <span className={friendMessageClassBottom}>{friendMessage.message}</span>
-                                ) : (
-                                    <span className={friendMessageClass}>{friendMessage.message}</span>
-                                )}
-                            </li>
+                            <li className={friendMessageClass}>{friendMessage.message}</li>
                         )
                     ))}
                 </ul>
                 <div className="grow flex items-end justify-center pe-3">
                     <div className="z-10 flex justify-center w-full h-24 px-2 bg-[#1F2029] text-white">
-                        <form className="flex basis-[90%] items-center justify-center text-sm">
-                            <button name="search-button" id="search-button" className={`text-white flex items-center justify-center w-16 h-12 rounded-s-xl bg-[#2B2D38] hover:bg-[#383B4D] transition duration-300 ease-in-out`} >
-                                <EmojisIcon classValue="w-6 fill-[#fff]" />
+                        <div className="flex basis-[90%] items-center justify-center text-sm">
+                            <button name="search-button" id="search-button" className={`text-white flex items-center justify-center w-16 h-14 rounded-s-xl bg-[#2B2D38]`} >
+                                <SearchIcon classValue="w-5 fill-[#ACB7F8]" />
                             </button>
 
-                            <button name="search-button" id="search-button" className={`text-white flex items-center justify-center w-16 h-12 bg-[#2B2D38] hover:bg-[#383B4D] transition duration-300 ease-in-out`} >
-                                <AttachIcon classValue="w-5 fill-[#fff]" />
+                            <button name="search-button" id="search-button" className={`text-white flex items-center justify-center w-10 h-14 bg-[#2B2D38]`} >
+                                <SearchIcon classValue="w-5 fill-[#ACB7F8]" />
                             </button>
 
-                            <input type="text" name="search" id="search" onChange={handleMessageInput} className=" w-full min-h-12 px-2 text-[#B4B4B5] bg-[#2B2D38] outline-none" placeholder="Escrever uma mensagem" />
+                            <input type="text" name="search" id="search" className=" w-full h-14 px-2 text-[#B4B4B5] bg-[#2B2D38] outline-none" placeholder="Escrever uma mensagem" />
 
-                            {inputMessageValue === '' ?
-                                (<button className="send-message-button bg-[#2B2D38] rounded-e-xl text-white flex items-center justify-center w-16 h-12 hover:bg-[#383B4D] transition duration-300 ease-in-out">
-                                    <RecordVoiceIcon classValue="w-6 rounded fill-[#ACB7F8]" />
-                                </button>
-                                ) : (
-                                    <button className="send-message-button bg-[#2B2D38] rounded-e-xl text-white flex items-center justify-center w-16 h-12 hover:bg-[#383B4D] transition duration-300 ease-in-out">
-                                        <SendMessageIcon classValue="w-5 rounded fill-[#ACB7F8]" />
-                                    </button>
-                                )
-                            }
-                        </form>
+                            <button className="send-message-button bg-[#2B2D38] rounded-e-xl text-white flex items-center justify-center w-16 h-14">
+                                <SearchIcon classValue="w-5 fill-[#ACB7F8]" />
+                            </button>
+                        </div>
                     </div>
                 </div>
 

@@ -28,7 +28,7 @@ export default function Navbar({ displayNotifications, setDisplayNotifications, 
                     <Link to="/chat" className="navigation-item transition ease-in-out w-[120px] h-fit pt-[20px] pb-2 cursor-pointer hover:text-[#9270F2] text-center relative">
                         <div>Chat</div>
                         {chat ? <div className="news-chat absolute top-4 right-2 text-[.7rem] text-white text-center bg-[#628BD9] min-w-8 max-w-9 rounded-xl border-[1px] border-t-[#432792] border-e-[#432792] border-b-[#D8A136] border-s-[#D8A136]">
-                            {!(chat > 99) ? chat : "+99"}
+                            {!(chat > 99) ? chat : "99+"}
                         </div> : null}
 
                     </Link>
@@ -37,7 +37,7 @@ export default function Navbar({ displayNotifications, setDisplayNotifications, 
                         className="navigation-item transition ease-in-out w-[120px] h-fit pt-[20px] pb-2 cursor-pointer hover:text-[#9270F2] text-center relative">
                         <div>Notificações</div>
                         {news ? <div className="news-chat absolute top-4 right-[-12px] text-[.7rem] text-white text-center bg-[#628BD9] min-w-8 max-w-9 rounded-xl border-[1px] border-t-[#432792] border-e-[#432792] border-b-[#D8A136] border-s-[#D8A136]">
-                            {!(news > 99) ? news : "+99"}
+                            {!(news > 99) ? news : "99+"}
                         </div> : null}
                     </div>
                 </div>

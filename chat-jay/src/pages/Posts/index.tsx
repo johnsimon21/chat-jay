@@ -108,7 +108,6 @@ export default function Posts({ notificationsOpened }: { notificationsOpened: bo
                         </div>
 
                     </li>
-
                 </div>
             ))}
         </ul>
