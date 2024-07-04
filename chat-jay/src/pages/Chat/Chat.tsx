@@ -2,7 +2,7 @@ import UserStatus from "../../components/UserStatus";
 import profilePicture from "../../assets/profile.jpg"
 import settingsIcon from "../../assets/settings.svg"
 import notificationsIcon from "../../assets/notifications.svg"
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { HomeIcon } from "../../components/svg/Home";
 import { NotificationIcon } from "../../components/svg/Notification";
 import { VideoCallIcon } from "../../components/svg/VideoCall";
@@ -12,10 +12,12 @@ import { RecordVoiceIcon } from "../../components/svg/RecordVoice";
 import { SendMessageIcon } from "../../components/svg/SendMessage";
 import { UsersIcon } from "../../components/svg/User";
 import { SearchIcon } from "../../components/svg/Search";
-import { FriendsActive, FriendMassage, ChatGroup } from "../../interfaces/global";
+import { FriendsActive, FriendMassage, ChatGroup, FormMessage, MyChat } from "../../interfaces/global";
 import "./Chat.css"
 import { AttachIcon } from "../../components/svg/Attach";
 import { EmojisIcon } from "../../components/svg/Emojis";
+import { SubmitHandler, useForm } from "react-hook-form";
+import moment from "moment-timezone";
 
 
 
@@ -62,8 +64,16 @@ export default function Chat() {
             status: false
         },
     ];
-    const myID = "aaa1"
-    const friendID = "aaa2"
+
+    const userInfo = { // this info comes from DB after login
+        id: "aaa1",
+        username: "Java Simon Script"
+    }
+    const friendInfo = { // this info comes from DB after login
+        id: "aaa2",
+        username: "Miguel Del Castilio",
+        status: true
+    }
 
     const friendsMessages: FriendMassage[] = [
         {
@@ -113,35 +123,35 @@ export default function Chat() {
             username: "Ângelo Domingos",
             message: "Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
             sentTime: "01/07/2024",
-            status: false
+            status: true
         },
         {
             id: "aaa1",
             username: "João Beto",
             message: "Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
             sentTime: "01/07/2024",
-            status: false
+            status: true
         },
         {
             id: "aaa1",
             username: "João Beto",
             message: "Rever os cabos de rede, o modem e o router",
             sentTime: "01/07/2024",
-            status: false
+            status: true
         },
         {
             id: "aaa2",
             username: "João Beto",
             message: "Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
             sentTime: "01/07/2024",
-            status: false
+            status: true
         },
         {
             id: "aaa1",
             username: "João Beto",
             message: "Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
             sentTime: "01/07/2024",
-            status: false
+            status: true
         },
     ]
     const chatGroup: ChatGroup[] = [
@@ -204,6 +214,75 @@ export default function Chat() {
     ]
 
     const [showNotifications, setShowNotification] = useState<boolean>(true)
+    const [myChat, setMyChat] = useState<MyChat[]>([
+        {
+            id: "aaa2",
+            username: "Miguel Del Castilio",
+            message: "222-2 Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
+            sentTime: "01/07/2024"
+        },
+        {
+            id: "aaa1",
+            username: "King Dacis",
+            message: "Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
+            sentTime: "01/07/2024"
+        },
+        {
+            id: "aaa1",
+            username: "Mauro Twister",
+            message: "Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
+            sentTime: "01/07/2024"
+        },
+        {
+            id: "aaa2",
+            username: "Miguel Deep",
+            message: "2222 Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
+            sentTime: "01/07/2024"
+        },
+        {
+            id: "aaa2",
+            username: "Abílio Bota Félix",
+            message: "2222 Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
+            sentTime: "01/07/2024"
+        },
+        {
+            id: "aaa1",
+            username: "Nanga",
+            message: "Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
+            sentTime: "01/07/2024"
+        },
+        {
+            id: "aaa1",
+            username: "Ângelo Domingos",
+            message: "Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
+            sentTime: "01/07/2024"
+        },
+        {
+            id: "aaa1",
+            username: "João Beto",
+            message: "Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
+            sentTime: "01/07/2024"
+        },
+        {
+            id: "aaa1",
+            username: "João Beto",
+            message: "Rever os cabos de rede, o modem e o router",
+            sentTime: "01/07/2024"
+        },
+        {
+            id: "aaa2",
+            username: "João Beto",
+            message: "Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
+            sentTime: "01/07/2024"
+        },
+        {
+            id: "aaa1",
+            username: "João Beto",
+            message: "Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
+            sentTime: "01/07/2024"
+        },
+    ])
+
     const [notViewedNotification, setNotViewedNotification] = useState<{ id: string }[]>([
         {
             id: "aaa1"
@@ -259,7 +338,39 @@ export default function Chat() {
     function handleMessageInput(event: ChangeEvent<HTMLInputElement>) {
         setInputMessageValue(event.target.value.trim());
     };
+    const { register, handleSubmit, reset, formState: { isSubmitSuccessful } } = useForm<FormMessage>();
+    const [localTime, setLocalTime] = useState<string>('');
+    const [message, setMessage] = useState<string>();
+    const [timeZone, setTimeZone] = useState<string>('');
+    const inputMessage = useRef<HTMLInputElement>(null);
 
+    useEffect(() => {
+        const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        setTimeZone(userTimeZone);
+    }, []);
+
+    const handleSendMessage = () => {
+        const time = moment().tz(timeZone).format('YYYY-MM-DD HH:mm:ss');
+        console.log({ name: inputMessageValue, localTime: time });
+        setLocalTime(time);
+        myChat.push({
+            id: userInfo.id,
+            username: userInfo.username,
+            message: inputMessageValue,
+            sentTime: time
+        })
+
+        if (inputMessage.current) {
+            inputMessage.current.value = '';
+        }
+    };
+
+    const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            handleSendMessage();
+        }
+    };
 
     const classValue = "w-[17px] fill-[#ACB7F8]"
     const userClassValue = "w-[25px] fill-[#BEBEC0]"
@@ -320,10 +431,10 @@ export default function Chat() {
                 </div>
 
                 <ul className="messages-reading absolute flex flex-col overflow-auto px-4 inset-x-0 inset-y-0 p-28">
-                    {friendsMessages.map((friendMessage, messageIndex) => (
-                        friendMessage.id === myID ? (
+                    {myChat.map((friendMessage, messageIndex) => (
+                        friendMessage.id === userInfo.id ? (
                             <li key={friendMessage.id} className="w-full flex flex-col">
-                                {friendsMessages[messageIndex - 1]?.id === friendMessage.id ? (
+                                {myChat[messageIndex - 1]?.id === friendMessage.id ? (
                                     <span className={MyMessageClassBottom}>{friendMessage.message}</span>
                                 ) : (
                                     <span className={MyMessageClass}>{friendMessage.message}</span>
@@ -331,7 +442,7 @@ export default function Chat() {
                             </li>
                         ) : (
                             <li key={friendMessage.id} className="w-full flex flex-col">
-                                {friendsMessages[messageIndex - 1]?.id === friendMessage.id ? (
+                                {myChat[messageIndex - 1]?.id === friendMessage.id ? (
                                     <span className={friendMessageClassBottom}>{friendMessage.message}</span>
                                 ) : (
                                     <span className={friendMessageClass}>{friendMessage.message}</span>
@@ -342,28 +453,39 @@ export default function Chat() {
                 </ul>
                 <div className="grow flex items-end justify-center pe-3">
                     <div className="z-10 flex justify-center w-full h-24 px-2 bg-[#1F2029] text-white">
-                        <form className="flex basis-[90%] items-center justify-center text-sm">
-                            <button name="search-button" id="search-button" className={`text-white flex items-center justify-center w-16 h-12 rounded-s-xl bg-[#2B2D38] hover:bg-[#383B4D] transition duration-300 ease-in-out`} >
+                        <div
+                            className="flex basis-[90%] items-center justify-center text-sm"
+                        >
+                            <div id="emoji-button" className={`text-white flex items-center justify-center w-16 h-12 rounded-s-xl bg-[#2B2D38] hover:bg-[#383B4D] transition duration-300 ease-in-out`} >
                                 <EmojisIcon classValue="w-6 fill-[#fff]" />
-                            </button>
+                            </div>
 
-                            <button name="search-button" id="search-button" className={`text-white flex items-center justify-center w-16 h-12 bg-[#2B2D38] hover:bg-[#383B4D] transition duration-300 ease-in-out`} >
+                            <div id="attach-button" className={`text-white flex items-center justify-center w-16 h-12 bg-[#2B2D38] hover:bg-[#383B4D] transition duration-300 ease-in-out`} >
                                 <AttachIcon classValue="w-5 fill-[#fff]" />
-                            </button>
+                            </div>
 
-                            <input type="text" name="search" id="search" onChange={handleMessageInput} className=" w-full min-h-12 px-2 text-[#B4B4B5] bg-[#2B2D38] outline-none" placeholder="Escrever uma mensagem" />
+                            <input
+                                type="text"
+                                id="message"
+                                ref={inputMessage}
+                                onChange={handleMessageInput}
+                                onKeyDown={handleKeyPress}
+                                className=" w-full min-h-12 px-2 text-[#B4B4B5] bg-[#2B2D38] outline-none" placeholder="Escrever uma mensagem" />
 
                             {inputMessageValue === '' ?
-                                (<button className="send-message-button bg-[#2B2D38] rounded-e-xl text-white flex items-center justify-center w-16 h-12 hover:bg-[#383B4D] transition duration-300 ease-in-out">
+                                (<div className="send-message-button cursor-pointer bg-[#2B2D38] rounded-e-xl text-white flex items-center justify-center w-16 h-12 hover:bg-[#383B4D] transition duration-300 ease-in-out">
                                     <RecordVoiceIcon classValue="w-6 rounded fill-[#ACB7F8]" />
-                                </button>
+                                </div>
                                 ) : (
-                                    <button className="send-message-button bg-[#2B2D38] rounded-e-xl text-white flex items-center justify-center w-16 h-12 hover:bg-[#383B4D] transition duration-300 ease-in-out">
+                                    <button
+                                        type="submit"
+                                        onClick={handleSendMessage}
+                                        className="send-message-button bg-[#2B2D38] rounded-e-xl text-white flex items-center justify-center w-16 h-12 hover:bg-[#383B4D] transition duration-300 ease-in-out">
                                         <SendMessageIcon classValue="w-5 rounded fill-[#ACB7F8]" />
                                     </button>
                                 )
                             }
-                        </form>
+                        </div>
                     </div>
                 </div>
 

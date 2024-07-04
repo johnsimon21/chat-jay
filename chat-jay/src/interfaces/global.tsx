@@ -18,3 +18,12 @@ export interface ChatGroup {
     sentTime: string;
     status: boolean | string;
 }[]
+export interface MyChat {
+    id: string;
+    username: string;
+    message: string;
+    sentTime: string;
+}[]
+export interface FormMessage {
+    message: string;
+}
