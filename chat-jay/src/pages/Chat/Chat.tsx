@@ -80,77 +80,77 @@ export default function Chat() {
             id: "aaa2",
             username: "Miguel Del Castilio",
             message: "222-2 Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
-            sentTime: "01/07/2024",
+            sentTime: "2024-07-06 17:39:24",
             status: true
         },
         {
             id: "aaa1",
             username: "King Dacis",
             message: "Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
-            sentTime: "01/07/2024",
+            sentTime: "2024-07-06 17:39:24",
             status: true
         },
         {
             id: "aaa1",
             username: "Mauro Twister",
             message: "Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
-            sentTime: "01/07/2024",
+            sentTime: "2024-07-06 17:39:24",
             status: true
         },
         {
             id: "aaa2",
             username: "Miguel Deep",
             message: "2222 Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
-            sentTime: "01/07/2024",
+            sentTime: "2024-07-06 17:39:24",
             status: true
         },
         {
             id: "aaa2",
             username: "Abílio Bota Félix",
             message: "2222 Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
-            sentTime: "01/07/2024",
+            sentTime: "2024-07-06 17:39:24",
             status: true
         },
         {
             id: "aaa1",
             username: "Nanga",
             message: "Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
-            sentTime: "01/07/2024",
+            sentTime: "2024-07-06 17:39:24",
             status: true
         },
         {
             id: "aaa1",
             username: "Ângelo Domingos",
             message: "Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
-            sentTime: "01/07/2024",
+            sentTime: "2024-07-06 17:39:24",
             status: true
         },
         {
             id: "aaa1",
             username: "João Beto",
             message: "Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
-            sentTime: "01/07/2024",
+            sentTime: "2024-07-06 17:39:24",
             status: true
         },
         {
             id: "aaa1",
             username: "João Beto",
             message: "Rever os cabos de rede, o modem e o router",
-            sentTime: "01/07/2024",
+            sentTime: "2024-07-06 17:39:24",
             status: true
         },
         {
             id: "aaa2",
             username: "João Beto",
             message: "Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
-            sentTime: "01/07/2024",
+            sentTime: "2024-07-06 17:39:24",
             status: true
         },
         {
             id: "aaa1",
             username: "João Beto",
             message: "Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
-            sentTime: "01/07/2024",
+            sentTime: "2024-07-06 17:39:24",
             status: true
         },
     ]
@@ -159,56 +159,56 @@ export default function Chat() {
             id: "aaa1",
             username: "Miguel Del Castilio",
             message: "Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
-            sentTime: "01/07/2024",
+            sentTime: "2024-07-06 17:39:24",
             status: true
         },
         {
             id: "aaa2",
             username: "King Dacis",
             message: "Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
-            sentTime: "01/07/2024",
+            sentTime: "2024-07-06 17:39:24",
             status: true
         },
         {
             id: "aaa3",
             username: "Mauro Twister",
             message: "Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
-            sentTime: "01/07/2024",
+            sentTime: "2024-07-06 17:39:24",
             status: true
         },
         {
             id: "aaa4",
             username: "Miguel Deep",
             message: "Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
-            sentTime: "01/07/2024",
+            sentTime: "2024-07-06 17:39:24",
             status: true
         },
         {
             id: "aaa5",
             username: "Abílio Bota Félix",
             message: "Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
-            sentTime: "01/07/2024",
+            sentTime: "2024-07-06 17:39:24",
             status: true
         },
         {
             id: "aaa6",
             username: "Nanga",
             message: "Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
-            sentTime: "01/07/2024",
+            sentTime: "2024-07-06 17:39:24",
             status: true
         },
         {
             id: "aaa7",
             username: "Ângelo Domingos",
             message: "Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
-            sentTime: "01/07/2024",
+            sentTime: "2024-07-06 17:39:24",
             status: false
         },
         {
             id: "aaa8",
             username: "João Beto",
             message: "Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
-            sentTime: "01/07/2024",
+            sentTime: "2024-07-06 17:39:24",
             status: false
         },
     ]
@@ -219,67 +219,67 @@ export default function Chat() {
             id: "aaa2",
             username: "Miguel Del Castilio",
             message: "222-2 Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
-            sentTime: "01/07/2024"
+            sentTime: "2024-07-06 17:39:24"
         },
         {
             id: "aaa1",
             username: "King Dacis",
             message: "Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
-            sentTime: "01/07/2024"
+            sentTime: "2024-07-06 17:39:24"
         },
         {
             id: "aaa1",
             username: "Mauro Twister",
             message: "Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
-            sentTime: "01/07/2024"
+            sentTime: "2024-07-06 17:39:24"
         },
         {
             id: "aaa2",
             username: "Miguel Deep",
             message: "2222 Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
-            sentTime: "01/07/2024"
+            sentTime: "2024-07-06 17:39:24"
         },
         {
             id: "aaa2",
             username: "Abílio Bota Félix",
             message: "2222 Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
-            sentTime: "01/07/2024"
+            sentTime: "2024-07-06 17:39:24"
         },
         {
             id: "aaa1",
             username: "Nanga",
             message: "Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
-            sentTime: "01/07/2024"
+            sentTime: "2024-07-06 17:39:24"
         },
         {
             id: "aaa1",
             username: "Ângelo Domingos",
             message: "Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
-            sentTime: "01/07/2024"
+            sentTime: "2024-07-06 17:39:24"
         },
         {
             id: "aaa1",
             username: "João Beto",
             message: "Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
-            sentTime: "01/07/2024"
+            sentTime: "2024-07-06 17:39:24"
         },
         {
             id: "aaa1",
             username: "João Beto",
             message: "Rever os cabos de rede, o modem e o router",
-            sentTime: "01/07/2024"
+            sentTime: "2024-07-06 17:39:24"
         },
         {
             id: "aaa2",
             username: "João Beto",
             message: "Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
-            sentTime: "01/07/2024"
+            sentTime: "2024-07-06 17:39:24"
         },
         {
             id: "aaa1",
             username: "João Beto",
             message: "Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
-            sentTime: "01/07/2024"
+            sentTime: "2024-07-06 17:39:24"
         },
     ])
 
@@ -343,25 +343,41 @@ export default function Chat() {
     const [message, setMessage] = useState<string>();
     const [timeZone, setTimeZone] = useState<string>('');
     const inputMessage = useRef<HTMLInputElement>(null);
+    const lastElementRef = useRef<HTMLLIElement | null>(null);
 
     useEffect(() => {
         const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
         setTimeZone(userTimeZone);
     }, []);
 
-    const handleSendMessage = () => {
-        const time = moment().tz(timeZone).format('YYYY-MM-DD HH:mm:ss');
-        console.log({ name: inputMessageValue, localTime: time });
-        setLocalTime(time);
-        myChat.push({
-            id: userInfo.id,
-            username: userInfo.username,
-            message: inputMessageValue,
-            sentTime: time
-        })
+    const handleScrollToLastElement = () => {
+        if (lastElementRef.current) {
+            lastElementRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
 
-        if (inputMessage.current) {
-            inputMessage.current.value = '';
+    useEffect(() => {
+        handleScrollToLastElement();
+    }, [myChat]);
+
+    const handleSendMessage = () => {
+        if (inputMessageValue !== '') {
+            const time = getCurrentTime();
+            console.log({ name: inputMessageValue, localTime: time });
+            setLocalTime(time);
+            const newMessgeChat = {
+                id: userInfo.id,
+                username: userInfo.username,
+                message: inputMessageValue,
+                sentTime: time
+            }
+            setMyChat(prevElements => [...prevElements, newMessgeChat]);
+            handleScrollToLastElement()
+
+            if (inputMessage.current) {
+                inputMessage.current.value = '';
+            }
+            setInputMessageValue('')
         }
     };
 
@@ -372,12 +388,26 @@ export default function Chat() {
         }
     };
 
+    function getCurrentTime() {
+        const time = moment().tz(timeZone).format('YYYY-MM-DD HH:mm:ss');
+
+        return time
+    }
+
+    function getTimeOfSentMessage(time: string) {
+
+        const hour = new Date(time).getHours()
+        const minutes = new Date(time).getMinutes()
+        console.log(time)
+        return hour + ":" + minutes
+    }
+
     const classValue = "w-[17px] fill-[#ACB7F8]"
     const userClassValue = "w-[25px] fill-[#BEBEC0]"
-    const friendMessageClass = "bg-[#3D4051] rounded-b-xl rounded-r-xl text-sm self-start mt-5 w-fit max-w-[60%] px-5 pt-[10px] pb-5"
-    const friendMessageClassBottom = "bg-[#3D4051] rounded-b-xl rounded-r-xl rounded-s-xl text-sm self-start mt-1 w-fit max-w-[60%] px-5 pt-[10px] pb-5"
-    const MyMessageClass = "bg-[#645397] rounded-b-xl rounded-s-xl text-sm self-end mt-5 w-fit max-w-[60%] px-5 pt-[10px] pb-5"
-    const MyMessageClassBottom = "bg-[#645397] rounded-b-xl rounded-s-xl rounded-r-xl text-sm self-end mt-1 w-fit max-w-[60%] px-5 pt-[10px] pb-5"
+    const friendMessageClass = "relative bg-[#3D4051] rounded-b-xl rounded-r-xl text-sm self-start mt-5 w-fit max-w-[60%] px-5 pt-[10px] pb-5"
+    const friendMessageClassBottom = "relative bg-[#3D4051] rounded-b-xl rounded-r-xl rounded-s-xl text-sm self-start mt-1 w-fit max-w-[60%] px-5 pt-[10px] pb-5"
+    const MyMessageClass = "relative bg-[#645397] rounded-b-xl rounded-s-xl text-sm self-end mt-5 w-fit max-w-[60%] px-5 pt-[10px] pb-5"
+    const MyMessageClassBottom = "relative bg-[#645397] rounded-b-xl rounded-s-xl rounded-r-xl text-sm self-end mt-1 w-fit max-w-[60%] min-w-11 px-4 pt-[5px] pb-6"
 
     return (
         <div className="flex basis-full h-screen">
@@ -409,14 +439,14 @@ export default function Chat() {
             <div className="message-section flex flex-col text-white text-2xl grow basis-full h-screen relative overflow-hidden">
 
                 <div className="grow flex items-end justify-start mt-10">
-                    <div className="user-call self-start z-10 flex w-56 h-12 px-2 bg-[#3E4153] rounded-r-2xl text-white">
+                    <div className="user-call relative self-start z-10 flex w-58 h-12 px-2 bg-[#3E4153] rounded-r-2xl text-white">
                         <div className="friend-info flex items-center basis-full">
                             <div className="profile-picture  w-8 h-8 bg-indigo-500 rounded-full mb-1 relative">
                                 <UserStatus userStatus={true} />
                                 <img src={profilePicture} alt="imagem de perfil" className="w-full h-full rounded-full border border-indigo-500" />
                             </div>
-                            <div className="username text-center text-xs text-white mx-2">
-                                John Simon
+                            <div className="username text-center text-xs text-white mx-2 truncate">
+                                {friendInfo.username}
                             </div>
                         </div>
                         <div className="buttons self-center flex flex-row-reverse">
@@ -427,32 +457,98 @@ export default function Chat() {
                                 <VoiceCallIcon classValue={classValue} />
                             </div>
                         </div>
+                        <div className="absolute top-[50px] right-4 bg-[#3E4153] min-w-16 rounded-b-xl text-center text-sm p-1">hoje</div>
                     </div>
                 </div>
 
-                <ul className="messages-reading absolute flex flex-col overflow-auto px-4 inset-x-0 inset-y-0 p-28">
+                <ul className="messages-reading absolute flex flex-col overflow-auto px-4 inset-x-0 top-0 inset-y-0 py-28 ">
                     {myChat.map((friendMessage, messageIndex) => (
-                        friendMessage.id === userInfo.id ? (
-                            <li key={friendMessage.id} className="w-full flex flex-col">
-                                {myChat[messageIndex - 1]?.id === friendMessage.id ? (
-                                    <span className={MyMessageClassBottom}>{friendMessage.message}</span>
-                                ) : (
-                                    <span className={MyMessageClass}>{friendMessage.message}</span>
-                                )}
-                            </li>
+                        messageIndex === myChat.length - 1 ? (
+                            friendMessage.id === userInfo.id ? (
+                                <li ref={lastElementRef} key={friendMessage.id} className="w-full flex flex-col">
+
+                                    {myChat[messageIndex - 1]?.id === friendMessage.id ? (
+                                        <span className={MyMessageClassBottom}>
+                                            {friendMessage.message}
+                                            <span className="text-white absolute start-3 bottom-[2px] text-[.6rem] text-[#C3C3C3]">
+                                                {getTimeOfSentMessage(friendMessage.sentTime)}
+                                            </span>
+                                        </span>
+                                    ) : (
+                                        <span className={MyMessageClass}>
+                                            {friendMessage.message}
+                                            <span className="text-white absolute start-3 bottom-[2px] text-[.6rem] text-[#C3C3C3]">
+                                                {getTimeOfSentMessage(friendMessage.sentTime)}
+                                            </span>
+                                        </span>
+                                    )}
+                                </li>
+                            ) : (
+                                <li ref={lastElementRef} key={friendMessage.id} className="w-full flex flex-col">
+                                    {myChat[messageIndex - 1]?.id === friendMessage.id ? (
+                                        <span className={friendMessageClassBottom}>
+                                            {friendMessage.message}
+                                            <span className="text-white absolute right-3 bottom-[2px] text-[.6rem] text-[#C3C3C3]">
+                                                {getTimeOfSentMessage(friendMessage.sentTime)}
+                                            </span>
+                                        </span>
+                                    ) : (
+                                        <span className={friendMessageClass}>
+                                            {friendMessage.message}
+                                            <span className="text-white absolute right-3 bottom-[2px] text-[.6rem] text-[#C3C3C3]">
+                                                {getTimeOfSentMessage(friendMessage.sentTime)}
+                                            </span>
+                                        </span>
+                                    )}
+                                </li>
+                            )
                         ) : (
-                            <li key={friendMessage.id} className="w-full flex flex-col">
-                                {myChat[messageIndex - 1]?.id === friendMessage.id ? (
-                                    <span className={friendMessageClassBottom}>{friendMessage.message}</span>
-                                ) : (
-                                    <span className={friendMessageClass}>{friendMessage.message}</span>
-                                )}
-                            </li>
+                            friendMessage.id === userInfo.id ? (
+                                <li key={friendMessage.id} className="w-full flex flex-col">
+
+                                    {myChat[messageIndex - 1]?.id === friendMessage.id ? (
+                                        <span className={MyMessageClassBottom}>
+                                            {friendMessage.message}
+                                            <span className="text-white absolute start-3 bottom-[2px] text-[.6rem] text-[#C3C3C3]">
+                                                {getTimeOfSentMessage(friendMessage.sentTime)}
+                                            </span>
+                                        </span>
+                                    ) : (
+                                        <span className={MyMessageClass}>
+                                            {friendMessage.message}
+                                            <span className="text-white absolute start-3 bottom-[2px] text-[.6rem] text-[#C3C3C3]">
+                                                {getTimeOfSentMessage(friendMessage.sentTime)}
+                                            </span>
+                                        </span>
+                                    )}
+                                </li>
+                            ) : (
+                                <li key={friendMessage.id} className="w-full flex flex-col">
+                                    {myChat[messageIndex - 1]?.id === friendMessage.id ? (
+                                        <span className={friendMessageClassBottom}>
+                                            {friendMessage.message}
+                                            <span className="text-white absolute right-3 bottom-[2px] text-[.6rem] text-[#C3C3C3]">
+                                                {getTimeOfSentMessage(friendMessage.sentTime)}
+                                            </span>
+                                        </span>
+                                    ) : (
+                                        <span className={friendMessageClass}>
+                                            {friendMessage.message}
+                                            <span className="text-white absolute right-3 bottom-[2px] text-[.6rem] text-[#C3C3C3]">
+                                                {getTimeOfSentMessage(friendMessage.sentTime)}
+                                            </span>
+                                        </span>
+                                    )}
+                                </li>
+                            )
                         )
+
+
                     ))}
                 </ul>
+
                 <div className="grow flex items-end justify-center pe-3">
-                    <div className="z-10 flex justify-center w-full h-24 px-2 bg-[#1F2029] text-white">
+                    <div className="z-10 flex justify-center w-full h-24 px-2 bg-[#1f2029] text-white">
                         <div
                             className="flex basis-[90%] items-center justify-center text-sm"
                         >
