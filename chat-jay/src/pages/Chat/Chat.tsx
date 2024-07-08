@@ -219,7 +219,7 @@ export default function Chat() {
             id: "aaa2",
             username: "Miguel Del Castilio",
             message: "222-2 Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
-            sentTime: "2024-07-06 17:39:24"
+            sentTime: "2024-07-05 17:39:24"
         },
         {
             id: "aaa1",
@@ -231,30 +231,66 @@ export default function Chat() {
             id: "aaa1",
             username: "Mauro Twister",
             message: "Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
-            sentTime: "2024-07-06 17:39:24"
+            sentTime: "2024-07-07 17:39:24"
         },
         {
             id: "aaa2",
             username: "Miguel Deep",
             message: "2222 Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
-            sentTime: "2024-07-06 17:39:24"
+            sentTime: "2024-07-08 17:39:24"
         },
         {
             id: "aaa2",
             username: "Abílio Bota Félix",
             message: "2222 Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
-            sentTime: "2024-07-06 17:39:24"
+            sentTime: "2024-07-09 17:39:24"
         },
         {
             id: "aaa1",
             username: "Nanga",
             message: "Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
-            sentTime: "2024-07-06 17:39:24"
+            sentTime: "2024-07-10 17:39:24"
         },
         {
             id: "aaa1",
             username: "Ângelo Domingos",
             message: "Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
+            sentTime: "2024-07-06 17:39:24"
+        },
+        {
+            id: "aaa1",
+            username: "João Beto",
+            message: "Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
+            sentTime: "2024-07-06 17:39:24"
+        },
+        {
+            id: "aaa1",
+            username: "João Beto",
+            message: "Rever os cabos de rede, o modem e o router",
+            sentTime: "2024-07-06 17:39:24"
+        },
+        {
+            id: "aaa2",
+            username: "João Beto",
+            message: "Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
+            sentTime: "2024-07-06 17:39:24"
+        },
+        {
+            id: "aaa1",
+            username: "João Beto",
+            message: "Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
+            sentTime: "2024-07-06 17:39:24"
+        },
+        {
+            id: "aaa1",
+            username: "João Beto",
+            message: "Rever os cabos de rede, o modem e o router",
+            sentTime: "2024-07-06 17:39:24"
+        },
+        {
+            id: "aaa2",
+            username: "João Beto",
+            message: "Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
             sentTime: "2024-07-06 17:39:24"
         },
         {
@@ -342,8 +378,10 @@ export default function Chat() {
     const [localTime, setLocalTime] = useState<string>('');
     const [message, setMessage] = useState<string>();
     const [timeZone, setTimeZone] = useState<string>('');
+    const [currentTimestamp, setCurrentTimestamp] = useState<string>('hoje');
     const inputMessage = useRef<HTMLInputElement>(null);
     const lastElementRef = useRef<HTMLLIElement | null>(null);
+    const chatContainerRef = useRef<HTMLUListElement>(null);
 
     useEffect(() => {
         const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -409,6 +447,67 @@ export default function Chat() {
     const MyMessageClass = "relative bg-[#645397] rounded-b-xl rounded-s-xl text-sm self-end mt-5 w-fit max-w-[60%] px-5 pt-[10px] pb-5"
     const MyMessageClassBottom = "relative bg-[#645397] rounded-b-xl rounded-s-xl rounded-r-xl text-sm self-end mt-1 w-fit max-w-[60%] min-w-11 px-4 pt-[5px] pb-6"
 
+    const handleScroll = () => {
+        if (!chatContainerRef.current) return;
+
+        const messagesElements = chatContainerRef.current.querySelectorAll('.messageItem');
+        let currentTime = '';
+
+        messagesElements.forEach((messageElement) => {
+            const messageTop = messageElement.getBoundingClientRect().top;
+            const containerTop = chatContainerRef.current!.getBoundingClientRect().top;
+
+            if (messageTop < containerTop + 90) {
+                currentTime = messageElement.getAttribute('data-time') || '';
+            }
+        });
+
+        if (currentTime) {
+            setCurrentTimestamp(currentTime);
+        }
+    };
+
+    function gepMessageTimestamp(currentTimestampValue: string | Date) {
+        const DateConstructor = new Date(currentTimestampValue)
+
+        const currentDate = new Date()
+        const currentYear = currentDate.getFullYear()
+        const currentMonth = currentDate.getMonth()
+        const currentDayOfMonth = currentDate.getDate()
+
+        let timestamp = "";
+        const newDate = DateConstructor.getDate().toString().length === 1 ? '0' + DateConstructor.getDate() : DateConstructor.getDate()
+
+        if (currentYear === DateConstructor.getFullYear()) {
+            if (currentMonth === DateConstructor.getMonth()) {
+
+                switch (DateConstructor.getDate()) {
+                    case currentDayOfMonth:
+                        timestamp = 'Hoje'
+                        break;
+
+                    default:
+                        timestamp = newDate + '/' + DateConstructor.getMonth() + '/' + DateConstructor.getFullYear()
+                        break;
+                }
+            }
+        }
+
+        return timestamp
+    }
+
+    useEffect(() => {
+        const chatContainer = chatContainerRef.current;
+        if (chatContainer) {
+            chatContainer.addEventListener('scroll', handleScroll);
+        }
+        return () => {
+            if (chatContainer) {
+                chatContainer.removeEventListener('scroll', handleScroll);
+            }
+        };
+    }, []);
+
     return (
         <div className="flex basis-full h-screen">
             <div className="side-bar-left flex flex-col items-center w-[120px] h-screen bg-[#2B2D38] rounded-r-lg">
@@ -457,15 +556,21 @@ export default function Chat() {
                                 <VoiceCallIcon classValue={classValue} />
                             </div>
                         </div>
-                        <div className="absolute top-[50px] right-4 bg-[#3E4153] min-w-16 rounded-b-xl text-center text-sm p-1">hoje</div>
+                        <div className="absolute top-[50px] right-4 bg-[#3E4153] min-w-16 rounded-b-xl text-center text-sm p-2">
+                            {gepMessageTimestamp(currentTimestamp)}
+                        </div>
                     </div>
                 </div>
 
-                <ul className="messages-reading absolute flex flex-col overflow-auto px-4 inset-x-0 top-0 inset-y-0 py-28 ">
+                <ul className="messages-reading absolute flex flex-col overflow-auto px-4 inset-x-0 top-0 inset-y-0 py-28" ref={chatContainerRef}>
                     {myChat.map((friendMessage, messageIndex) => (
                         messageIndex === myChat.length - 1 ? (
                             friendMessage.id === userInfo.id ? (
-                                <li ref={lastElementRef} key={friendMessage.id} className="w-full flex flex-col">
+                                <li
+                                    ref={lastElementRef}
+                                    key={friendMessage.id}
+                                    className="messageItem w-full flex flex-col"
+                                    data-time={friendMessage.sentTime}>
 
                                     {myChat[messageIndex - 1]?.id === friendMessage.id ? (
                                         <span className={MyMessageClassBottom}>
@@ -484,7 +589,11 @@ export default function Chat() {
                                     )}
                                 </li>
                             ) : (
-                                <li ref={lastElementRef} key={friendMessage.id} className="w-full flex flex-col">
+                                <li
+                                    ref={lastElementRef}
+                                    key={friendMessage.id}
+                                    className="messageItem w-full flex flex-col"
+                                    data-time={friendMessage.sentTime}>
                                     {myChat[messageIndex - 1]?.id === friendMessage.id ? (
                                         <span className={friendMessageClassBottom}>
                                             {friendMessage.message}
@@ -504,7 +613,7 @@ export default function Chat() {
                             )
                         ) : (
                             friendMessage.id === userInfo.id ? (
-                                <li key={friendMessage.id} className="w-full flex flex-col">
+                                <li key={friendMessage.id} className="messageItem w-full flex flex-col" data-time={friendMessage.sentTime}>
 
                                     {myChat[messageIndex - 1]?.id === friendMessage.id ? (
                                         <span className={MyMessageClassBottom}>
@@ -523,7 +632,7 @@ export default function Chat() {
                                     )}
                                 </li>
                             ) : (
-                                <li key={friendMessage.id} className="w-full flex flex-col">
+                                <li key={friendMessage.id} className="messageItem w-full flex flex-col" data-time={friendMessage.sentTime}>
                                     {myChat[messageIndex - 1]?.id === friendMessage.id ? (
                                         <span className={friendMessageClassBottom}>
                                             {friendMessage.message}
