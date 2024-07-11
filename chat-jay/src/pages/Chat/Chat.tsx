@@ -10,14 +10,15 @@ import { VoiceCallIcon } from "../../components/svg/VoiceCall";
 import { SettingsIcon } from "../../components/svg/Settings";
 import { RecordVoiceIcon } from "../../components/svg/RecordVoice";
 import { SendMessageIcon } from "../../components/svg/SendMessage";
-import { UsersIcon } from "../../components/svg/User";
+import { UserGroupIcon } from "../../components/svg/UsersGroup";
+import { UserIcon } from "../../components/svg/User";
 import { SearchIcon } from "../../components/svg/Search";
-import { FriendsActive, FriendMassage, ChatGroup, FormMessage, MyChat } from "../../interfaces/global";
-import "./Chat.css"
+import { FriendsActive, FriendMassage, ChatGroup, FormMessage, MyChat, GroupsMessageListed } from "../../interfaces/global";
 import { AttachIcon } from "../../components/svg/Attach";
 import { EmojisIcon } from "../../components/svg/Emojis";
 import { SubmitHandler, useForm } from "react-hook-form";
 import moment from "moment-timezone";
+import "./Chat.css"
 
 
 
@@ -26,42 +27,50 @@ export default function Chat() {
         {
             id: "aaa1",
             username: "Miguel Del Castilio",
-            status: true
+            status: true,
+            profilePicture: null
         },
         {
             id: "aaa2",
             username: "King Dacis",
-            status: true
+            status: true,
+            profilePicture: null
         },
         {
             id: "aaa3",
             username: "Mauro Twister",
-            status: true
+            status: true,
+            profilePicture: null
         },
         {
             id: "aaa4",
             username: "Miguel Deep",
-            status: true
+            status: true,
+            profilePicture: null
         },
         {
             id: "aaa5",
             username: "Abílio Bota Félix",
-            status: true
+            status: true,
+            profilePicture: null
         },
         {
             id: "aaa6",
             username: "Nanga",
-            status: true
+            status: true,
+            profilePicture: null
         },
         {
             id: "aaa7",
             username: "Ângelo Domingos",
-            status: false
+            status: false,
+            profilePicture: null,
         },
         {
             id: "aaa8",
             username: "João Beto",
-            status: false
+            status: false,
+            profilePicture: null,
         },
     ];
 
@@ -72,7 +81,8 @@ export default function Chat() {
     const friendInfo = { // this info comes from DB after login
         id: "aaa2",
         username: "Miguel Del Castilio",
-        status: true
+        status: true,
+        profilePicture: null
     }
 
     const friendsMessages: FriendMassage[] = [
@@ -81,82 +91,94 @@ export default function Chat() {
             username: "Miguel Del Castilio",
             message: "222-2 Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
             sentTime: "2024-07-06 17:39:24",
-            status: true
+            status: true,
+            profilePicture: null
         },
         {
             id: "aaa1",
             username: "King Dacis",
             message: "Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
             sentTime: "2024-07-06 17:39:24",
-            status: true
+            status: true,
+            profilePicture: null
         },
         {
             id: "aaa1",
             username: "Mauro Twister",
             message: "Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
             sentTime: "2024-07-06 17:39:24",
-            status: true
+            status: true,
+            profilePicture: null
         },
         {
             id: "aaa2",
             username: "Miguel Deep",
             message: "2222 Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
             sentTime: "2024-07-06 17:39:24",
-            status: true
+            status: true,
+            profilePicture: null
         },
         {
             id: "aaa2",
             username: "Abílio Bota Félix",
             message: "2222 Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
             sentTime: "2024-07-06 17:39:24",
-            status: true
+            status: true,
+            profilePicture: null
         },
         {
             id: "aaa1",
             username: "Nanga",
             message: "Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
             sentTime: "2024-07-06 17:39:24",
-            status: true
+            status: true,
+            profilePicture: null
         },
         {
             id: "aaa1",
             username: "Ângelo Domingos",
             message: "Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
             sentTime: "2024-07-06 17:39:24",
-            status: true
+            status: true,
+            profilePicture: null
         },
         {
             id: "aaa1",
             username: "João Beto",
             message: "Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
             sentTime: "2024-07-06 17:39:24",
-            status: true
+            status: true,
+            profilePicture: null
         },
         {
             id: "aaa1",
             username: "João Beto",
             message: "Rever os cabos de rede, o modem e o router",
             sentTime: "2024-07-06 17:39:24",
-            status: true
+            status: true,
+            profilePicture: null
         },
         {
             id: "aaa2",
             username: "João Beto",
             message: "Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
             sentTime: "2024-07-06 17:39:24",
-            status: true
+            status: true,
+            profilePicture: null
         },
         {
             id: "aaa1",
             username: "João Beto",
             message: "Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
             sentTime: "2024-07-06 17:39:24",
-            status: true
+            status: true,
+            profilePicture: null
         },
     ]
     const chatGroup: ChatGroup[] = [
         {
             id: "aaa1",
+            groupName: "< Frontend Developers />",
             username: "Miguel Del Castilio",
             message: "Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
             sentTime: "2024-07-06 17:39:24",
@@ -164,48 +186,55 @@ export default function Chat() {
         },
         {
             id: "aaa2",
+            groupName: "< Backend Developers />",
             username: "King Dacis",
             message: "Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
             sentTime: "2024-07-06 17:39:24",
             status: true
         },
         {
-            id: "aaa3",
+            id: "aaa1",
+            groupName: "< Frontend Developers />",
             username: "Mauro Twister",
             message: "Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
             sentTime: "2024-07-06 17:39:24",
             status: true
         },
         {
-            id: "aaa4",
+            id: "aaa2",
+            groupName: "< Backend Developers />",
             username: "Miguel Deep",
             message: "Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
             sentTime: "2024-07-06 17:39:24",
             status: true
         },
         {
-            id: "aaa5",
+            id: "aaa1",
+            groupName: "< Frontend Developers />",
             username: "Abílio Bota Félix",
             message: "Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
             sentTime: "2024-07-06 17:39:24",
             status: true
         },
         {
-            id: "aaa6",
+            id: "aaa1",
+            groupName: "< Frontend Developers />",
             username: "Nanga",
             message: "Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
             sentTime: "2024-07-06 17:39:24",
             status: true
         },
         {
-            id: "aaa7",
+            id: "aaa1",
+            groupName: "< Frontend Developers />",
             username: "Ângelo Domingos",
             message: "Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
             sentTime: "2024-07-06 17:39:24",
             status: false
         },
         {
-            id: "aaa8",
+            id: "aaa1",
+            groupName: "< Frontend Developers />",
             username: "João Beto",
             message: "Rever os cabos de rede, o modem e o router, ligar novamente à rede Wi-Fi",
             sentTime: "2024-07-06 17:39:24",
@@ -508,6 +537,30 @@ export default function Chat() {
         };
     }, []);
 
+
+    function handleListGroupsMessages(chatGroups: ChatGroup[]): GroupsMessageListed[] {
+        let groupsMessageListed: GroupsMessageListed[] = [];
+        let messageCounter = 0;
+
+        for (const chatGroupItem of chatGroups) {
+            const groupMessage = groupsMessageListed.find(groupListed => groupListed.id === chatGroupItem.id)
+            if (!groupMessage) {
+                groupsMessageListed.push({
+                    id: chatGroupItem.id,
+                    groupName: chatGroupItem.groupName,
+                    username: chatGroupItem.username,
+                    message: chatGroupItem.message,
+                    sentTime: chatGroupItem.sentTime,
+                    messageQuantity: messageCounter++,
+                });
+            } else {
+                groupMessage.messageQuantity++
+            }
+        }
+        return groupsMessageListed
+    }
+
+
     return (
         <div className="flex basis-full h-screen">
             <div className="side-bar-left flex flex-col items-center w-[120px] h-screen bg-[#2B2D38] rounded-r-lg">
@@ -527,7 +580,10 @@ export default function Chat() {
                 <div className="profile-area self-center h-16 my-2">
                     <div className="profile-picture mx-auto w-8 h-8 bg-indigo-500 rounded-full mb-1 relative">
                         <UserStatus userStatus={true} />
-                        <img src={profilePicture} alt="imagem de perfil" className="w-full h-full rounded-full border border-indigo-500" />
+                        <img
+                            src={profilePicture}
+                            alt="imagem de perfil"
+                            className="w-full h-full rounded-full border border-indigo-500" />
                     </div>
                     <div className="username text-center text-xs text-white">
                         John Simon
@@ -542,7 +598,15 @@ export default function Chat() {
                         <div className="friend-info flex items-center basis-full">
                             <div className="profile-picture  w-8 h-8 bg-indigo-500 rounded-full mb-1 relative">
                                 <UserStatus userStatus={true} />
-                                <img src={profilePicture} alt="imagem de perfil" className="w-full h-full rounded-full border border-indigo-500" />
+                                {friendInfo.profilePicture ?
+                                    (
+                                        <img src={friendInfo.profilePicture} alt="imagem de perfil" className="w-full h-full rounded-full border border-indigo-500" />
+                                    ) : (
+                                        <div className="friend-picture relative flex h-full w-full justify-center items-center">
+                                            <UserStatus userStatus={true} />
+                                            <UserIcon classValue={userClassValue} />
+                                        </div>
+                                    )}
                             </div>
                             <div className="username text-center text-xs text-white mx-2 truncate">
                                 {friendInfo.username}
@@ -661,13 +725,13 @@ export default function Chat() {
                         <div
                             className="flex basis-[90%] items-center justify-center text-sm"
                         >
-                            <div id="emoji-button" className={`text-white flex items-center justify-center w-16 h-12 rounded-s-xl bg-[#2B2D38] hover:bg-[#383B4D] transition duration-300 ease-in-out`} >
+                            <div id="emoji-button" className={`text-white flex items-center cursor-pointer justify-center w-16 h-12 rounded-s-xl bg-[#2B2D38] hover:bg-[#383B4D] transition duration-300 ease-in-out`} >
                                 <EmojisIcon classValue="w-6 fill-[#fff]" />
                             </div>
 
-                            <div id="attach-button" className={`text-white flex items-center justify-center w-16 h-12 bg-[#2B2D38] hover:bg-[#383B4D] transition duration-300 ease-in-out`} >
-                                <AttachIcon classValue="w-5 fill-[#fff]" />
-                            </div>
+                            <div id="attach-button" className={`text-white items-center cursor-pointer justify-center w-16 h-12 bg-[#2B2D38] hover:bg-[#383B4D] transition duration-300 ease-in-out`} />
+                            {/* <AttachIcon classValue="w-5 fill-[#fff]" />
+                            </div> */}
 
                             <input
                                 type="text"
@@ -717,7 +781,11 @@ export default function Chat() {
                                 <li key={friendActive.id} className="friend w-11 p-[2px] flex flex-col items-center bg-[#3C3E48] rounded-md cursor-pointer">
                                     <div className="picture w-9 h-7 bg-[#587CC0] rounded-md relative flex items-end justify-center">
                                         <UserStatus userStatus={true} />
-                                        <UsersIcon classValue={userClassValue} />
+                                        {friendActive.profilePicture ? (
+                                            <img src={friendActive.profilePicture} alt="imagem de perfil" className="min-w-7 h-full " />
+                                        ) : (
+                                            <UserIcon classValue={userClassValue} />
+                                        )}
                                     </div>
                                     <div className="name pt-[5px]">
                                         {getFirstNameFromCompleteName(friendActive.username)}
@@ -747,8 +815,16 @@ export default function Chat() {
                                         <div className="friend-profile ms-3 me-2">
                                             <div className="w-8 h-8 bg-[#587CC0] rounded-full relative flex justify-center">
                                                 <UserStatus userStatus={friendMessage.status} />
-                                                <span className="initial-name text-white self-center text-xs">
-                                                </span>
+                                                {friendMessage.profilePicture ?
+                                                    (
+                                                        <img src={friendMessage.profilePicture} alt="imagem de perfil" className="w-full h-full rounded-full border border-indigo-500" />
+                                                    ) : (
+                                                        <div className="friend-picture relative flex h-full w-full justify-center items-center">
+                                                            <UserStatus userStatus={true} />
+                                                            <UserIcon classValue={userClassValue} />
+                                                        </div>
+                                                    )
+                                                }
                                             </div>
                                         </div>
 
@@ -756,7 +832,7 @@ export default function Chat() {
                                             <span className="friend-name text-white">
                                                 {friendMessage.username}
                                             </span>
-                                            <span className="friend-notifications h-8 text-[#B9B9B9] text-xs whitespace-normal text-wrap text-ellipsis overflow-hidden">
+                                            <span className="friend-notifications mt-1 h-8 text-[#B9B9B9] text-xs whitespace-normal text-wrap text-ellipsis overflow-hidden">
                                                 {friendMessage.message}
                                             </span>
                                         </div>
@@ -769,7 +845,7 @@ export default function Chat() {
                         <div className="chat-group max-h-[50%] overflow-hidden">
                             <div className="chat-group-text text-[#F2F2F2] font-bold my-2">Chat - Group</div>
                             <ul className="flex flex-col">
-                                {chatGroup.map((chatGroupItem) => (
+                                {handleListGroupsMessages(chatGroup).map((chatGroupItem) => (
                                     <li
                                         key={chatGroupItem.id}
                                         onClick={() => handleViewedNotification(chatGroupItem.id)}
@@ -777,19 +853,29 @@ export default function Chat() {
                                     >
                                         <div className="friend-profile ms-3 me-2">
                                             <div className="w-8 h-8 bg-[#587CC0] rounded-full relative flex justify-center">
-                                                <UserStatus userStatus={chatGroupItem.status} />
                                                 <span className="initial-name text-white self-center text-xs">
+                                                    <div className="friend-picture relative flex h-full w-full justify-center items-center">
+                                                        <UserGroupIcon classValue={userClassValue} />
+                                                    </div>
                                                 </span>
                                             </div>
                                         </div>
 
                                         <div className="friend-info flex flex-col me-3 text-left text-sm">
                                             <span className="friend-name text-white">
-                                                {chatGroupItem.username}
+                                                {chatGroupItem.groupName}
                                             </span>
-                                            <span className="friend-notifications h-8 text-[#B9B9B9] text-xs whitespace-normal text-wrap text-ellipsis overflow-hidden">
+                                            <span className="friend-notifications h-8 text-[#B9B9B9] mt-1 text-xs whitespace-normal text-wrap text-ellipsis overflow-hidden">
+                                                <span className="text-[#928BD9]">#{chatGroupItem.username}: </span>
                                                 {chatGroupItem.message}
                                             </span>
+                                        </div>
+                                        <div
+                                            className="navigation-item transition ease-in-out">
+                                            {chatGroupItem.messageQuantity ? <div
+                                                className="news-chat flex items-center justify-center text-[.6rem] font-bold text-white p-1 bg-[#628BD9] min-w-7 max-w-8 min-h-6 max-h-7 rounded-xl border-[1px] border-t-[#432792] border-e-[#432792] border-b-[#D8A136] border-s-[#D8A136]">
+                                                {!(chatGroupItem.messageQuantity > 999) ? chatGroupItem.messageQuantity : "999+"}
+                                            </div> : null}
                                         </div>
                                     </li>
                                 ))}
@@ -798,7 +884,7 @@ export default function Chat() {
                         </div>
                     </div>
 
-                    <div className="create-chat flex items-end justify-end p-3 basis-20 shrink ">
+                    <div className="create-chat flex items-end justify-end p-3 basis-18 shrink ">
                         <div className="w-9 h-9 flex items-center justify-center text-lg text-[#55ED6E] rounded-full bg-[#404251] bg-gradient-to-r from-[#202128] to-[#404251] cursor-pointer border-2 border-[#3B3D47] shadow-black shadow-md">+</div>
                     </div>
                 </div>
