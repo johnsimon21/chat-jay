@@ -34,6 +34,9 @@ export interface MyChat {
     username: string;
     message: string;
     sentTime: string;
+    attachedFile?: string | null;
+    attachedFileType?: string | null;
+    attachedFilePreview?: string | null;
 }[]
 export interface FormMessage {
     message: string;

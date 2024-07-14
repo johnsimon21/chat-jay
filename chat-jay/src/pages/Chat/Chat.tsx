@@ -19,7 +19,8 @@ import { EmojisIcon } from "../../components/svg/Emojis";
 import { SubmitHandler, useForm } from "react-hook-form";
 import moment from "moment-timezone";
 import "./Chat.css"
-
+import Picker from '@emoji-mart/react';
+import data from '@emoji-mart/data';
 
 
 export default function Chat() {
@@ -400,18 +401,66 @@ export default function Chat() {
 
     const [inputMessageValue, setInputMessageValue] = useState<string>('');
 
-    function handleMessageInput(event: ChangeEvent<HTMLInputElement>) {
-        setInputMessageValue(event.target.value.trim());
-    };
     const { register, handleSubmit, reset, formState: { isSubmitSuccessful } } = useForm<FormMessage>();
     const [localTime, setLocalTime] = useState<string>('');
     const [message, setMessage] = useState<string>();
+    const [typingMessage, setTypingMessage] = useState<string>();
     const [timeZone, setTimeZone] = useState<string>('');
     const [currentTimestamp, setCurrentTimestamp] = useState<string>('hoje');
     const inputMessage = useRef<HTMLInputElement>(null);
     const lastElementRef = useRef<HTMLLIElement | null>(null);
     const chatContainerRef = useRef<HTMLUListElement>(null);
+    const [attachedFile, setAttachedFile] = useState<File | null>(null);
+    const [attachedFileName, setAttachedFileName] = useState<string>('');
+    const [attachedFilePreview, setAttachedFilePreview] = useState<string | null>(null);
+    const [errorMessage, setErrorMessage] = useState<string>('');
 
+    const MAX_FILE_SIZE = 50 * 1024 * 1024;
+
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+        const file = e.target.files && e.target.files[0];
+        if (file) {
+            if (file.size > MAX_FILE_SIZE) {
+                setErrorMessage('O arquivo excedeu o limite de 30MB.');
+                setAttachedFile(null);
+                setAttachedFileName('');
+                setAttachedFilePreview(null);
+            } else {
+                setAttachedFile(file);
+                setAttachedFileName(file.name);
+                setErrorMessage('');
+                if (file.type.startsWith('image/') || file.type.startsWith('video/')) {
+                    const reader = new FileReader();
+                    reader.onload = (event) => {
+                        setAttachedFilePreview(event.target?.result as string);
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    setAttachedFilePreview(null);
+                }
+            }
+        }
+    };
+
+    const handleAttachButtonClick = (): void => {
+        const fileInput = document.querySelector('input[type=file]') as HTMLInputElement | null;
+        if (fileInput) {
+            fileInput.click();
+        }
+    };
+
+    const handleRemoveFile = (): void => {
+        setAttachedFile(null);
+        setAttachedFileName('');
+        setAttachedFilePreview(null);
+        setErrorMessage('');
+    };
+
+
+    function handleMessageTyping(event: ChangeEvent<HTMLInputElement>) {
+        setInputMessageValue(event.target.value.trim());
+        setTypingMessage(event.target.value)
+    };
     useEffect(() => {
         const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
         setTimeZone(userTimeZone);
@@ -428,15 +477,19 @@ export default function Chat() {
     }, [myChat]);
 
     const handleSendMessage = () => {
-        if (inputMessageValue !== '') {
+        if (inputMessageValue.trim() !== '' || attachedFile) {
             const time = getCurrentTime();
             console.log({ name: inputMessageValue, localTime: time });
+
             setLocalTime(time);
             const newMessgeChat = {
                 id: userInfo.id,
                 username: userInfo.username,
                 message: inputMessageValue,
-                sentTime: time
+                sentTime: time,
+                attachedFile: attachedFile ? attachedFile.name : null,
+                attachedFileType: attachedFile ? attachedFile.type : null,
+                attachedFilePreview: attachedFilePreview
             }
             setMyChat(prevElements => [...prevElements, newMessgeChat]);
             handleScrollToLastElement()
@@ -444,8 +497,21 @@ export default function Chat() {
             if (inputMessage.current) {
                 inputMessage.current.value = '';
             }
+
             setInputMessageValue('')
+            setTypingMessage('')
+            setAttachedFile(null);
+            setAttachedFileName('');
+            setAttachedFilePreview(null);
+            setErrorMessage('');
         }
+    };
+
+    const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+
+    const addEmoji = (emoji: { native: string; }) => {
+        setInputMessageValue((prevMessage) => prevMessage + emoji.native);
+        setTypingMessage((prevMessage) => prevMessage + emoji.native);
     };
 
     const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -561,6 +627,15 @@ export default function Chat() {
     }
 
 
+    // const addEmoji = (emoji: { native: string | number; }) => {
+    //     if(message){
+    //         setMessage((prevMessage) => prevMessage! + emoji.native);
+    //     }else {
+    //         setMessage('' + emoji.native);
+    //     }
+    // };
+
+
     return (
         <div className="flex basis-full h-screen">
             <div className="side-bar-left flex flex-col items-center w-[120px] h-screen bg-[#2B2D38] rounded-r-lg">
@@ -634,8 +709,21 @@ export default function Chat() {
                                     ref={lastElementRef}
                                     key={friendMessage.id}
                                     className="messageItem w-full flex flex-col"
-                                    data-time={friendMessage.sentTime}>
-
+                                    data-time={friendMessage.sentTime}
+                                >
+                                    {friendMessage.attachedFilePreview && (
+                                        <div className="mt-2">
+                                            {friendMessage.attachedFileType?.startsWith('image/') && (
+                                                <img src={friendMessage.attachedFilePreview} alt={friendMessage.attachedFile || ''} className="max-w-64" />
+                                            )}
+                                            {friendMessage.attachedFileType?.startsWith('video/') && (
+                                                <video controls style={{ maxWidth: '100px', maxHeight: '100px' }}>
+                                                    <source src={friendMessage.attachedFilePreview} type={friendMessage.attachedFileType} />
+                                                    Your browser does not support the video tag.
+                                                </video>
+                                            )}
+                                        </div>
+                                    )}
                                     {myChat[messageIndex - 1]?.id === friendMessage.id ? (
                                         <span className={MyMessageClassBottom}>
                                             {friendMessage.message}
@@ -673,12 +761,24 @@ export default function Chat() {
                                             </span>
                                         </span>
                                     )}
+                                    {friendMessage.attachedFilePreview && (
+                                        <div className="mt-2">
+                                            {friendMessage.attachedFileType?.startsWith('image/') && (
+                                                <img src={friendMessage.attachedFilePreview} alt={friendMessage.attachedFile || ''} style={{ maxWidth: '100px', maxHeight: '100px' }} />
+                                            )}
+                                            {friendMessage.attachedFileType?.startsWith('video/') && (
+                                                <video controls style={{ maxWidth: '100px', maxHeight: '100px' }}>
+                                                    <source src={friendMessage.attachedFilePreview} type={friendMessage.attachedFileType} />
+                                                    Your browser does not support the video tag.
+                                                </video>
+                                            )}
+                                        </div>
+                                    )}
                                 </li>
                             )
                         ) : (
                             friendMessage.id === userInfo.id ? (
                                 <li key={friendMessage.id} className="messageItem w-full flex flex-col" data-time={friendMessage.sentTime}>
-
                                     {myChat[messageIndex - 1]?.id === friendMessage.id ? (
                                         <span className={MyMessageClassBottom}>
                                             {friendMessage.message}
@@ -693,6 +793,19 @@ export default function Chat() {
                                                 {getTimeOfSentMessage(friendMessage.sentTime)}
                                             </span>
                                         </span>
+                                    )}
+                                    {friendMessage.attachedFilePreview && (
+                                        <div className="mt-2">
+                                            {friendMessage.attachedFileType?.startsWith('image/') && (
+                                                <img src={friendMessage.attachedFilePreview} alt={friendMessage.attachedFile || ''} style={{ maxWidth: '100px', maxHeight: '100px' }} />
+                                            )}
+                                            {friendMessage.attachedFileType?.startsWith('video/') && (
+                                                <video controls style={{ maxWidth: '100px', maxHeight: '100px' }}>
+                                                    <source src={friendMessage.attachedFilePreview} type={friendMessage.attachedFileType} />
+                                                    Your browser does not support the video tag.
+                                                </video>
+                                            )}
+                                        </div>
                                     )}
                                 </li>
                             ) : (
@@ -712,34 +825,97 @@ export default function Chat() {
                                             </span>
                                         </span>
                                     )}
+                                    {friendMessage.attachedFilePreview && (
+                                        <div className="mt-2">
+                                            {friendMessage.attachedFileType?.startsWith('image/') && (
+                                                <img src={friendMessage.attachedFilePreview} alt={friendMessage.attachedFile || ''} style={{ maxWidth: '100px', maxHeight: '100px' }} />
+                                            )}
+                                            {friendMessage.attachedFileType?.startsWith('video/') && (
+                                                <video controls style={{ maxWidth: '100px', maxHeight: '100px' }}>
+                                                    <source src={friendMessage.attachedFilePreview} type={friendMessage.attachedFileType} />
+                                                    Your browser does not support the video tag.
+                                                </video>
+                                            )}
+                                        </div>
+                                    )}
                                 </li>
                             )
                         )
-
-
                     ))}
                 </ul>
+
 
                 <div className="grow flex items-end justify-center pe-3">
                     <div className="z-10 flex justify-center w-full h-24 px-2 bg-[#1f2029] text-white">
                         <div
                             className="flex basis-[90%] items-center justify-center text-sm"
                         >
-                            <div id="emoji-button" className={`text-white flex items-center cursor-pointer justify-center w-16 h-12 rounded-s-xl bg-[#2B2D38] hover:bg-[#383B4D] transition duration-300 ease-in-out`} >
-                                <EmojisIcon classValue="w-6 fill-[#fff]" />
+                            <div className="relative">
+                                <button
+                                    onClick={() => setShowEmojiPicker(!showEmojiPicker)}
+                                    id="emoji-button"
+                                    className={`text-white flex items-center justify-center w-16 h-12 rounded-s-xl bg-[#2B2D38] hover:bg-[#383B4D] transition duration-300 ease-in-out`} >
+                                    <EmojisIcon classValue="w-6 fill-[#fff]" />
+                                </button>
+                                {showEmojiPicker && (
+                                    <div className="absolute bottom-14">
+                                        <Picker data={data} onEmojiSelect={addEmoji} />
+                                    </div>
+                                )}
                             </div>
 
-                            <div id="attach-button" className={`text-white items-center cursor-pointer justify-center w-16 h-12 bg-[#2B2D38] hover:bg-[#383B4D] transition duration-300 ease-in-out`} />
-                            {/* <AttachIcon classValue="w-5 fill-[#fff]" />
-                            </div> */}
+                            <input
+                                type="file"
+                                onChange={handleFileChange}
+                                className="hidden"
+                                ref={(fileInput) => fileInput && fileInput.setAttribute('multiple', 'multiple')}
+                            />
+                            <div className="relative">
+                                {errorMessage && (
+                                    <div className="absolute bottom-14 left-[-60px] text-nowrap text-red-300 p-2 bg-[#2B2D38] rounded">
+                                        {errorMessage}
+                                    </div>
+                                )}
+                                {attachedFileName && !errorMessage && (
+                                    <div className="absolute bottom-14 left-[-50px] max-w-64 min-h-20 min-w-64 bg-[#33374F] rounded">
+                                        <button
+                                            onClick={handleRemoveFile}
+                                            className="absolute left-1 flex z-10 m-2 w-5 h-5 bg-[#33374F] hover:bg-[#2B2D38] border rounded-full">
+                                            <span className="flex basis-full self-center justify-center text-[.6rem] ">X</span>
+                                        </button>
+
+                                        {attachedFilePreview ? (
+                                            <>
+                                                {attachedFile && attachedFile.type.startsWith('image/') && (
+                                                    <img src={attachedFilePreview} alt={attachedFileName} className="max-w-64 p-1" />
+                                                )}
+                                                {attachedFile && attachedFile.type.startsWith('video/') && (
+                                                    <video controls className="max-w-80 p-1">
+                                                        <source src={attachedFilePreview} type={attachedFile.type} />
+                                                        Your browser does not support the video tag.
+                                                    </video>
+                                                )}
+                                            </>
+                                        ) : (
+                                            <span className="flex p-2 pt-10"><strong className="pe-1">Anexo:</strong>{attachedFileName}</span>
+                                        )}
+                                    </div>
+                                )}
+
+                                <button onClick={handleAttachButtonClick} id="attach-button" className={`text-white items-center flex justify-center items-center w-16 h-12 bg-[#2B2D38] hover:bg-[#383B4D] transition duration-300 ease-in-out`}>
+
+                                    <AttachIcon classValue="w-5 fill-[#fff]" />
+                                </button>
+                            </div>
 
                             <input
                                 type="text"
                                 id="message"
                                 ref={inputMessage}
-                                onChange={handleMessageInput}
+                                value={typingMessage}
+                                onChange={handleMessageTyping}
                                 onKeyDown={handleKeyPress}
-                                className=" w-full min-h-12 px-2 text-[#B4B4B5] bg-[#2B2D38] outline-none" placeholder="Escrever uma mensagem" />
+                                className=" w-full min-h-12 px-2 text-[#B4B4B5] bg-[#2B2D38] outline-none" placeholder="Digite uma mensagem..." />
 
                             {inputMessageValue === '' ?
                                 (<div className="send-message-button cursor-pointer bg-[#2B2D38] rounded-e-xl text-white flex items-center justify-center w-16 h-12 hover:bg-[#383B4D] transition duration-300 ease-in-out">
